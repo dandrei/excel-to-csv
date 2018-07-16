@@ -1,5 +1,5 @@
 usage: ./excel-to-csv.sh [-i <path>] [-p <password>] [-x <path>]
 options:
  -i,--input <path>          File(s) or folder(s) to process
- -p,--password <password>   Password for file
+ -p,--password <password>   Password(s) to try
  -x,--export <path>         Export files to path. If no path is given, each file will be exported in place

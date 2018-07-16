@@ -14,7 +14,7 @@ class CLIOptions {
     CLIOptions() {
         options.addOption(option("i", "input", "File(s) or folder(s) to process", "path", false));
         options.addOption(option("x", "export", "Export files to path. If no path is given, each file will be exported in place", "path", true));
-        options.addOption(option("p", "password", "Password for file", "password", true));
+        options.addOption(option("p", "password", "Password(s) to try", "password", true));
     }
 
     private Option option(String shortName, String longName, String description, String argument, boolean isOptional) {
