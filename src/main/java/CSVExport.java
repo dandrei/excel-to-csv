@@ -56,14 +56,11 @@ class CSVExport {
     }
 
     private void writeSheet(Sheet sheet, File file) throws IOException {
-
         if (file.exists() && !file.delete())
             throw new RuntimeException("Couldn't delete " + file.getCanonicalPath());
 
         try (ICSVWriter csvWriter = getWriter(file)) {
-
             for (Row row : sheet) {
-
                 ArrayList<String> data = new ArrayList<>();
 
                 for (Cell cell : row) {
@@ -85,7 +82,6 @@ class CSVExport {
                             data.add(cell.toString());
                     }
                 }
-
                 csvWriter.writeNext(data.toArray(new String[]{}));
                 csvWriter.flush();
             }

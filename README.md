@@ -50,7 +50,9 @@ Gradle needs to be installed on the system for development.
 The folder `./bin/` contains the script `compile` (both Linux and Windows versions), which automatically generates the binaries that are then ready to run.
 
 Script internals: the `compile` script first calls `gradle build`, which generates a tarball, `excel-to-csv.tar`, under `./build/distributions`.
-Then, the generated tarball is extracted under `./build/distributions/excel-to-csv/`.  
+Then, the generated tarball is extracted under `./build/distributions/excel-to-csv/`.
+
+Java8+ functional features are heavily employed and are preferred.  
 
 ## Caveats
 Sometimes runs out of memory on large files.
