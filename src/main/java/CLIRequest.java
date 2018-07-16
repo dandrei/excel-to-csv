@@ -20,14 +20,13 @@ class CLIRequest {
     }
 
     CLIRequest(String[] paths, String[] passwords, boolean shouldExport, String output) {
-
         this.files = Stream.of(paths)
                 .flatMap(this::toFile)
                 .collect(Collectors.toSet());
 
         this.passwords = passwords == null ? new HashSet<>() : new HashSet<>(Arrays.asList(passwords));
         this.shouldExport = shouldExport;
-        this.output = output != null ? new File(output) : null;
+        this.output = output != null ? new File(output.trim()) : null;
         if (output != null && !this.output.isDirectory())
             throw new RuntimeException("Output should be a directory");
 
@@ -35,7 +34,7 @@ class CLIRequest {
     }
 
     private Stream<File> toFile(String location) {
-        File path = new File(location);
+        File path = new File(location.trim());
 
         if (path.isDirectory())
             return Stream
@@ -59,15 +58,15 @@ class CLIRequest {
         return passwords;
     }
 
-    boolean shouldExport() {
-        return shouldExport;
-    }
-
     Optional<File> getOutput() {
         return Optional.ofNullable(output);
     }
 
     Optional<String> getHelp() {
         return Optional.ofNullable(help);
+    }
+
+    boolean shouldExport() {
+        return shouldExport;
     }
 }

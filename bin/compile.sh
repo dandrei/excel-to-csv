@@ -1,3 +1,4 @@
+cd ..
 gradle build
 
 echo "Extracting"

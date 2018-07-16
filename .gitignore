@@ -1,7 +1,15 @@
+# Gradle
 .gradle
-/build/
-.idea
+
+# Build
+build
+out
+
+# Test
 output
+
+# JetBrains
+.idea
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -11,6 +19,3 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties

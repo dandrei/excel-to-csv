@@ -16,7 +16,6 @@ public class ExcelExport {
     }
 
     String parse(String[] argv) throws ParseException {
-
         Optional<String> result = new CLIOptions().parse(argv).map(cliRequest -> {
 
             if (cliRequest.getHelp().isPresent())
@@ -30,13 +29,25 @@ public class ExcelExport {
                     .map(Optional::get)
                     .collect(Collectors.toList());
 
-
             if (cliRequest.shouldExport())
                 reports.stream()
                         .filter(ExcelReport::canExport)
-                        .forEach(r -> new CSVExport(r.getWorkbook(), r.getFile(), cliRequest.getOutput().orElse(r.getFile().getParentFile())));
+                        .forEach(r -> new CSVExport(
+                                r.getWorkbook(),
+                                r.getFile(),
+                                cliRequest.getOutput().orElse(r.getFile().getParentFile())
+                        ));
 
-            Table table = new Table("File", "Format", "Extension matches?", "Password protected?", "Password known?", "Password", "Sheets");
+            Table table = new Table(
+                    "File",
+                    "Format",
+                    "Extension matches?",
+                    "Password protected?",
+                    "Password known?",
+                    "Password",
+                    "Sheets"
+            );
+
             reports.stream()
                     .filter(Objects::nonNull)
                     .forEach(r -> table.row(
@@ -56,7 +67,6 @@ public class ExcelExport {
     }
 
     private static Optional<ExcelReport> buildReport(File file, Set<String> passwords) {
-
         Optional<ExcelReport> report = new ExcelWorkbook(file).buildReport();
 
         if (report.filter(ExcelReport::noPassword).isPresent())
