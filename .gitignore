@@ -10,6 +10,7 @@ output
 
 # JetBrains
 .idea
+excel-to-csv.iml
 
 # Ignore Gradle GUI config
 gradle-app.setting

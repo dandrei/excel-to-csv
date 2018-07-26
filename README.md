@@ -45,7 +45,9 @@ Analyze all files in a directory and extract them to a specific folder:
 
 
 ## Development
-Gradle needs to be installed on the system for development.
+Gradle 4+ needs to be installed on the system for development. On Linux, you will need to install it manually as most package managers don't have the right version. Read their installation guide here: https://gradle.org/install/
+
+On Linux, Java versions older than 8 have some issues fetching the dependencies from Maven (HTTPS issue, missing certificates). I tested `openjdk-8-jdk` on Ubuntu and it works.
 
 The folder `./bin/` contains the script `compile` (both Linux and Windows versions), which automatically generates the binaries that are then ready to run.
 

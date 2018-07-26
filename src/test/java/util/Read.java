@@ -7,12 +7,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class Read {
-    public static String clean(String text) {
-        return text.replaceAll("[\\r\\n]", "").trim();
+    private static String clean(String text) {
+        return text
+                .replaceAll("[\\r]+", "\n")
+                .replaceAll("[\\n]+", "\n")
+                .trim();
     }
 
     public static String text(String path) {
@@ -34,5 +38,13 @@ public class Read {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static boolean sameLines(String s1, String s2) {
+        String[] lines1 = clean(s1).split("\n");
+        Arrays.sort(lines1);
+        String[] lines2 = clean(s2).split("\n");
+        Arrays.sort(lines2);
+        return Arrays.equals(lines1, lines2);
     }
 }

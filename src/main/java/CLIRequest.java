@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,7 +29,11 @@ class CLIRequest {
         this.shouldExport = shouldExport;
         this.output = output != null ? new File(output.trim()) : null;
         if (output != null && !this.output.isDirectory())
-            throw new RuntimeException("Output should be a directory");
+            try {
+                throw new RuntimeException("Output should be a directory: " + this.output.getCanonicalPath());
+            } catch (IOException ignored) {
+
+            }
 
         help = null;
     }
